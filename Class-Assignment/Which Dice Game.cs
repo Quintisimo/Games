@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Class_Assignment {
+    public partial class diceGamesForm : Form {
+        public diceGamesForm() {
+            InitializeComponent();
+        }
+
+        private void diceGameSelection_CheckedChanged(object sender, EventArgs e) {
+
+            if (singleDicePig.Checked) {
+                pigGameForm OneDiceForm = new pigGameForm();
+                OneDiceForm.Show();
+                singleDicePig.Checked = false;
+            } else if (twoDicePig.Checked) {
+                pigWithTwoDiceForm TwoDiceForm = new pigWithTwoDiceForm();
+                TwoDiceForm.Show();
+                twoDicePig.Checked = false;
+            }
+        }
+
+        private void exitButton_Click(object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show("Are you sure you want to quit ?", "Quit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result == DialogResult.Yes) {
+                this.Close();
+            }
+        }
+    }
+}
