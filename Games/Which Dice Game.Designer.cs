@@ -58,9 +58,9 @@
             this.singleDicePig.AutoSize = true;
             this.singleDicePig.Location = new System.Drawing.Point(22, 41);
             this.singleDicePig.Name = "singleDicePig";
-            this.singleDicePig.Size = new System.Drawing.Size(204, 29);
+            this.singleDicePig.Size = new System.Drawing.Size(192, 29);
             this.singleDicePig.TabIndex = 0;
-            this.singleDicePig.Text = "Single Dice Pig";
+            this.singleDicePig.Text = "Single Die Pig";
             this.singleDicePig.UseVisualStyleBackColor = true;
             this.singleDicePig.CheckedChanged += new System.EventHandler(this.diceGameSelection_CheckedChanged);
             // 

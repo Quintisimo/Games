@@ -12,6 +12,7 @@ namespace Class_Assignment {
     public partial class pigGameForm : Form {
         public pigGameForm() {
             InitializeComponent();
+            anotherGameGroup.Enabled = false;
         }
     }
 }

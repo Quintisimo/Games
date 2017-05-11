@@ -56,7 +56,7 @@
             // cardGame
             // 
             this.cardGame.AutoSize = true;
-            this.cardGame.Location = new System.Drawing.Point(7, 99);
+            this.cardGame.Location = new System.Drawing.Point(19, 99);
             this.cardGame.Name = "cardGame";
             this.cardGame.Size = new System.Drawing.Size(152, 29);
             this.cardGame.TabIndex = 1;
@@ -67,7 +67,7 @@
             // diceGame
             // 
             this.diceGame.AutoSize = true;
-            this.diceGame.Location = new System.Drawing.Point(7, 46);
+            this.diceGame.Location = new System.Drawing.Point(19, 46);
             this.diceGame.Name = "diceGame";
             this.diceGame.Size = new System.Drawing.Size(149, 29);
             this.diceGame.TabIndex = 0;
