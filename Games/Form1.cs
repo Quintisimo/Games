@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Class_Assignment {
+namespace Games {
     public partial class gamesForm : Form {
         public gamesForm() {
             InitializeComponent();

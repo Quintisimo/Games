@@ -1,4 +1,4 @@
-﻿namespace Class_Assignment {
+﻿namespace Games {
     partial class diceGamesForm {
         /// <summary>
         /// Required designer variable.

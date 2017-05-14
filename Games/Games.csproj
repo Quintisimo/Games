@@ -7,8 +7,8 @@
     <ProjectGuid>{F98BE460-40BE-40A9-9632-1E0003447EBC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Class_Assignment</RootNamespace>
-    <AssemblyName>Class-Assignment</AssemblyName>
+    <RootNamespace>Games</RootNamespace>
+    <AssemblyName>Games</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Game Logic Library">
+      <HintPath>..\Game Logic Library\bin\Debug\Game Logic Library.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +55,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Images.cs" />
     <Compile Include="Pig Game Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +111,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Solitaire Form.resx">
       <DependentUpon>Solitaire Form.cs</DependentUpon>

@@ -1,4 +1,4 @@
-﻿namespace Class_Assignment {
+﻿namespace Games {
     partial class twentyOneGameForm {
         /// <summary>
         /// Required designer variable.
