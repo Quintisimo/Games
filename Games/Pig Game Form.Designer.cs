@@ -33,8 +33,8 @@
             this.rollButton = new System.Windows.Forms.Button();
             this.holdButton = new System.Windows.Forms.Button();
             this.anotherGameGroup = new System.Windows.Forms.GroupBox();
-            this.yesButton = new System.Windows.Forms.RadioButton();
             this.noButton = new System.Windows.Forms.RadioButton();
+            this.yesButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.diceImage)).BeginInit();
             this.anotherGameGroup.SuspendLayout();
             this.SuspendLayout();
@@ -112,6 +112,7 @@
             this.rollButton.TabIndex = 7;
             this.rollButton.Text = "Roll";
             this.rollButton.UseVisualStyleBackColor = false;
+            this.rollButton.Click += new System.EventHandler(this.rollButton_Click);
             // 
             // holdButton
             // 
@@ -123,6 +124,7 @@
             this.holdButton.TabIndex = 8;
             this.holdButton.Text = "Hold";
             this.holdButton.UseVisualStyleBackColor = false;
+            this.holdButton.Click += new System.EventHandler(this.holdButton_Click);
             // 
             // anotherGameGroup
             // 
@@ -135,17 +137,6 @@
             this.anotherGameGroup.TabStop = false;
             this.anotherGameGroup.Text = "Another Game ?";
             // 
-            // yesButton
-            // 
-            this.yesButton.AutoSize = true;
-            this.yesButton.Location = new System.Drawing.Point(14, 34);
-            this.yesButton.Name = "yesButton";
-            this.yesButton.Size = new System.Drawing.Size(81, 29);
-            this.yesButton.TabIndex = 0;
-            this.yesButton.TabStop = true;
-            this.yesButton.Text = "Yes";
-            this.yesButton.UseVisualStyleBackColor = true;
-            // 
             // noButton
             // 
             this.noButton.AutoSize = true;
@@ -156,6 +147,19 @@
             this.noButton.TabStop = true;
             this.noButton.Text = "No";
             this.noButton.UseVisualStyleBackColor = true;
+            this.noButton.CheckedChanged += new System.EventHandler(this.playAgain_CheckedChanged);
+            // 
+            // yesButton
+            // 
+            this.yesButton.AutoSize = true;
+            this.yesButton.Location = new System.Drawing.Point(14, 34);
+            this.yesButton.Name = "yesButton";
+            this.yesButton.Size = new System.Drawing.Size(81, 29);
+            this.yesButton.TabIndex = 0;
+            this.yesButton.TabStop = true;
+            this.yesButton.Text = "Yes";
+            this.yesButton.UseVisualStyleBackColor = true;
+            this.yesButton.CheckedChanged += new System.EventHandler(this.playAgain_CheckedChanged);
             // 
             // pigGameForm
             // 
