@@ -23,17 +23,14 @@ namespace Game_Logic_Library {
             die.RollDie();
             faceValue = GetFaceValue();
             int noPoints = 1;
-            int results = 0;
 
             if (faceValue == noPoints) {
                 return true;
             } else {
                 if (currentPlayer == playersName[0]) {
-                    results = results + faceValue;
-                    pointsTotal[0] = results;
+                    pointsTotal[0] = pointsTotal[0] + faceValue;
                 } else if (currentPlayer == playersName[1]) {
-                    results = results + faceValue;
-                    pointsTotal[1] = results;
+                    pointsTotal[1] = pointsTotal[1] + faceValue;
                 }
                 return false;
             }
