@@ -35,21 +35,24 @@ namespace Games {
         }
 
         private void rollButton_Click(object sender, EventArgs e) {
+            bool playGame = Pig_Single_Die_Game.PlayGame();
+            bool hasWon = Pig_Single_Die_Game.HasWon();
             rollOrHoldLabel.Text = "roll or hold";
-            Pig_Single_Die_Game.PlayGame();
             playerOneText.Text = Pig_Single_Die_Game.GetPointsTotal("Player 1").ToString();
             playerTwoText.Text = Pig_Single_Die_Game.GetPointsTotal("Player 2").ToString();
             holdButton.Enabled = true;
             DiceImage();
 
-            if (Pig_Single_Die_Game.PlayGame() == true) {
-                string completedTurn = "Sorry you have thrown a 1\nYour turn is over";
+            if (playGame) {
+                string completedTurn = "Sorry you have thrown a 1\nYour turn is over" +
+                    "\nYour score is reverted to " 
+                    + Pig_Single_Die_Game.GetPointsTotal(currentPlayer);
                 MessageBox.Show(completedTurn, "Turn Completed", MessageBoxButtons.OKCancel);
                 currentPlayer = Pig_Single_Die_Game.GetNextPlayerName();
                 turnLabel.Text = currentPlayer;
             }
 
-            if (Pig_Single_Die_Game.HasWon() == true) {
+            if (hasWon) {
                 string winningPlayer = currentPlayer + " has won";
                 MessageBox.Show(winningPlayer, "Game Over", MessageBoxButtons.OKCancel);
                 anotherGameGroup.Enabled = true;

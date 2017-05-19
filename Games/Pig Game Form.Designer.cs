@@ -61,7 +61,6 @@
             // 
             // diceImage
             // 
-            this.diceImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.diceImage.Location = new System.Drawing.Point(298, 96);
             this.diceImage.Name = "diceImage";
             this.diceImage.Size = new System.Drawing.Size(55, 55);

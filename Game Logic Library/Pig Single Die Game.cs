@@ -23,14 +23,17 @@ namespace Game_Logic_Library {
             die.RollDie();
             faceValue = GetFaceValue();
             int noPoints = 1;
+            int results = 0;
 
             if (faceValue == noPoints) {
                 return true;
             } else {
-                if (currentPlayer == "Player 1") {
-                    pointsTotal[0] = pointsTotal[0] + faceValue;
-                } else if (currentPlayer == "Player 2") {
-                    pointsTotal[1] = pointsTotal[1] + faceValue;
+                if (currentPlayer == playersName[0]) {
+                    results = results + faceValue;
+                    pointsTotal[0] = results;
+                } else if (currentPlayer == playersName[1]) {
+                    results = results + faceValue;
+                    pointsTotal[1] = results;
                 }
                 return false;
             }
@@ -40,9 +43,9 @@ namespace Game_Logic_Library {
             int winingScore = 30;
             int playersCurrentScore;
 
-            if (currentPlayer == "Player 1") {
+            if (currentPlayer == playersName[0]) {
                 playersCurrentScore = pointsTotal[0];
-            } else if (currentPlayer == "Player 2") {
+            } else if (currentPlayer == playersName[1]) {
                 playersCurrentScore = pointsTotal[1];
             } else {
                 playersCurrentScore = 0;
@@ -50,9 +53,8 @@ namespace Game_Logic_Library {
 
             if (playersCurrentScore >= winingScore) {
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
 
         public static string GetFirstPlayerName() {
@@ -76,9 +78,8 @@ namespace Game_Logic_Library {
                 return pointsTotal[0];
             } else if (nameOfPlayer == playersName[1]) { 
                 return pointsTotal[1];
-            } else {
-                return 0;
             }
+            return 0;
         }
 
         public static int GetFaceValue() {
