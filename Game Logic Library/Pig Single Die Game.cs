@@ -12,6 +12,8 @@ namespace Game_Logic_Library {
         private static int[] pointsTotal;
         private static string[] playersName;
         private static string currentPlayer;
+        private static int player1 = 0;
+        private static int player2 = 1;
 
         public static void SetUpGame() {
             pointsTotal = new int[] { 0, 0 };
@@ -27,10 +29,10 @@ namespace Game_Logic_Library {
             if (faceValue == noPoints) {
                 return true;
             } else {
-                if (currentPlayer == playersName[0]) {
-                    pointsTotal[0] = pointsTotal[0] + faceValue;
-                } else if (currentPlayer == playersName[1]) {
-                    pointsTotal[1] = pointsTotal[1] + faceValue;
+                if (currentPlayer == playersName[player1]) {
+                    pointsTotal[player1] += faceValue;
+                } else if (currentPlayer == playersName[player2]) {
+                    pointsTotal[player2] += faceValue;
                 }
                 return false;
             }
@@ -40,10 +42,10 @@ namespace Game_Logic_Library {
             int winingScore = 30;
             int playersCurrentScore;
 
-            if (currentPlayer == playersName[0]) {
-                playersCurrentScore = pointsTotal[0];
-            } else if (currentPlayer == playersName[1]) {
-                playersCurrentScore = pointsTotal[1];
+            if (currentPlayer == playersName[player1]) {
+                playersCurrentScore = pointsTotal[player1];
+            } else if (currentPlayer == playersName[player2]) {
+                playersCurrentScore = pointsTotal[player2];
             } else {
                 playersCurrentScore = 0;
             }
@@ -55,26 +57,26 @@ namespace Game_Logic_Library {
         }
 
         public static string GetFirstPlayerName() {
-            currentPlayer = playersName[0];
+            currentPlayer = playersName[player1];
             return currentPlayer;
         }
      
         public static string GetNextPlayerName() {
-            if (currentPlayer == playersName[0]) {
-                currentPlayer = playersName[1];
+            if (currentPlayer == playersName[player1]) {
+                currentPlayer = playersName[player2];
                 return currentPlayer;
             } else {
-                currentPlayer = playersName[0];
+                currentPlayer = playersName[player1];
                 return currentPlayer;
             }
         }
 
         public static int GetPointsTotal(string nameOfPlayer) {
 
-            if (nameOfPlayer == playersName[0]) {
-                return pointsTotal[0];
-            } else if (nameOfPlayer == playersName[1]) { 
-                return pointsTotal[1];
+            if (nameOfPlayer == playersName[player1]) {
+                return pointsTotal[player1];
+            } else if (nameOfPlayer == playersName[player2]) { 
+                return pointsTotal[player2];
             }
             return 0;
         }

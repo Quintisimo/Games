@@ -12,12 +12,14 @@ namespace Game_Logic_Library {
         private int[] totalPoints;
         private int[] numOfGamesWon;
         private int numOfUserAcesWithValueOne;
+        private int dealer = 0;
+        private int player = 1;
 
         public void SetUpGame() {
             hands = new Hand[2];
             cardPile = new CardPile(true);
-            hands[0] = new Hand(cardPile.DealCards(2));
-            hands[1] = new Hand(cardPile.DealCards(2));
+            hands[dealer] = new Hand(cardPile.DealCards(2));
+            hands[player] = new Hand(cardPile.DealCards(2));
             totalPoints = new int[] { 0, 0 };
             numOfGamesWon = new int[] { 0, 0 };
             numOfUserAcesWithValueOne = 0;
@@ -34,23 +36,35 @@ namespace Game_Logic_Library {
             FaceValue temp;
             foreach (Card card in hands[who]) {
                 temp = card.GetFaceValue();
+                int faceCard = 10;
+                int numberCard = 2;
+
                 if (temp == FaceValue.Ten || temp == FaceValue.Jack || 
                     temp == FaceValue.Queen || temp == FaceValue.King) {
-                    result += 10;
+                    result += faceCard;
 
                 } else if(temp == FaceValue.Ace) {
 
+                    if (who == player && GetNumOfUserAcesWithValueOne() > 0) {
+                        result += 1;
+                    } else {
+                        result += 11;
+                    }
+
                 } else {
-                    result += 2;
+                    result += numberCard + (int)card.GetFaceValue();
                 }
-                result = result + (int)card.GetFaceValue();
             }
             totalPoints[who] = result;
             return result;
         }
 
         public void PlayForDealer() {
+            int minimumPoints = 17;
 
+            while (totalPoints[dealer] < minimumPoints) {
+                DealOneCardTo(dealer);
+            }
         }
 
         public Hand GetHand(int who) {

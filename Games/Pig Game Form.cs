@@ -37,6 +37,7 @@ namespace Games {
         private void rollButton_Click(object sender, EventArgs e) {
             bool playGame = Pig_Single_Die_Game.PlayGame();
             bool hasWon = Pig_Single_Die_Game.HasWon();
+
             rollOrHoldLabel.Text = "roll or hold";
             playerOneText.Text = Pig_Single_Die_Game.GetPointsTotal("Player 1").ToString();
             playerTwoText.Text = Pig_Single_Die_Game.GetPointsTotal("Player 2").ToString();
