@@ -38,8 +38,10 @@
             this.dealButton = new System.Windows.Forms.Button();
             this.hitButton = new System.Windows.Forms.Button();
             this.standButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.cancelGameButton = new System.Windows.Forms.Button();
             this.testButton = new System.Windows.Forms.Button();
+            this.acesValuedOneText = new System.Windows.Forms.TextBox();
+            this.acesValuedOneLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dealerTable
@@ -172,16 +174,17 @@
             // 
             // dealButton
             // 
-            this.dealButton.Location = new System.Drawing.Point(20, 324);
+            this.dealButton.Location = new System.Drawing.Point(38, 338);
             this.dealButton.Name = "dealButton";
             this.dealButton.Size = new System.Drawing.Size(80, 39);
             this.dealButton.TabIndex = 12;
             this.dealButton.Text = "Deal";
             this.dealButton.UseVisualStyleBackColor = true;
+            this.dealButton.Click += new System.EventHandler(this.dealButton_Click);
             // 
             // hitButton
             // 
-            this.hitButton.Location = new System.Drawing.Point(119, 324);
+            this.hitButton.Location = new System.Drawing.Point(140, 338);
             this.hitButton.Name = "hitButton";
             this.hitButton.Size = new System.Drawing.Size(87, 39);
             this.hitButton.TabIndex = 13;
@@ -190,25 +193,26 @@
             // 
             // standButton
             // 
-            this.standButton.Location = new System.Drawing.Point(221, 324);
+            this.standButton.Location = new System.Drawing.Point(248, 338);
             this.standButton.Name = "standButton";
             this.standButton.Size = new System.Drawing.Size(106, 39);
             this.standButton.TabIndex = 14;
             this.standButton.Text = "Stand";
             this.standButton.UseVisualStyleBackColor = true;
+            this.standButton.Click += new System.EventHandler(this.standButton_Click);
             // 
-            // cancelButton
+            // cancelGameButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(333, 324);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(101, 39);
-            this.cancelButton.TabIndex = 15;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelGameButton.Location = new System.Drawing.Point(377, 338);
+            this.cancelGameButton.Name = "cancelGameButton";
+            this.cancelGameButton.Size = new System.Drawing.Size(186, 39);
+            this.cancelGameButton.TabIndex = 15;
+            this.cancelGameButton.Text = "Cancel Game";
+            this.cancelGameButton.UseVisualStyleBackColor = true;
             // 
             // testButton
             // 
-            this.testButton.Location = new System.Drawing.Point(500, 306);
+            this.testButton.Location = new System.Drawing.Point(495, 295);
             this.testButton.Name = "testButton";
             this.testButton.Size = new System.Drawing.Size(78, 40);
             this.testButton.TabIndex = 16;
@@ -216,13 +220,31 @@
             this.testButton.UseVisualStyleBackColor = true;
             this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
+            // acesValuedOneText
+            // 
+            this.acesValuedOneText.Location = new System.Drawing.Point(210, 293);
+            this.acesValuedOneText.Name = "acesValuedOneText";
+            this.acesValuedOneText.Size = new System.Drawing.Size(29, 31);
+            this.acesValuedOneText.TabIndex = 17;
+            // 
+            // acesValuedOneLabel
+            // 
+            this.acesValuedOneLabel.AutoSize = true;
+            this.acesValuedOneLabel.Location = new System.Drawing.Point(243, 297);
+            this.acesValuedOneLabel.Name = "acesValuedOneLabel";
+            this.acesValuedOneLabel.Size = new System.Drawing.Size(180, 25);
+            this.acesValuedOneLabel.TabIndex = 18;
+            this.acesValuedOneLabel.Text = "Aces with value 1";
+            // 
             // twentyOneGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 389);
+            this.Controls.Add(this.acesValuedOneLabel);
+            this.Controls.Add(this.acesValuedOneText);
             this.Controls.Add(this.testButton);
-            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.cancelGameButton);
             this.Controls.Add(this.standButton);
             this.Controls.Add(this.hitButton);
             this.Controls.Add(this.dealButton);
@@ -262,7 +284,9 @@
         private System.Windows.Forms.Button dealButton;
         private System.Windows.Forms.Button hitButton;
         private System.Windows.Forms.Button standButton;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button cancelGameButton;
         private System.Windows.Forms.Button testButton;
+        private System.Windows.Forms.TextBox acesValuedOneText;
+        private System.Windows.Forms.Label acesValuedOneLabel;
     }
 }
