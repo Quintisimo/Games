@@ -76,14 +76,16 @@ namespace Games {
             }
         }// End DisplayGuiHand
 
-        private bool ScoreMessage() {
+        private bool ScoreMessage(string close = "no") {
             dealerPoints = TwentyOneGame.GetTotalPoints(dealer);
             playerPoints = TwentyOneGame.GetTotalPoints(player);
 
             if (dealerPoints > WINNING_POINTS) {
+                if (close == "no") {
+                    playerGamesWon += addOnePoint;
+                    gamesWonTexts[player].Text = playerGamesWon.ToString();
+                }
                 dealerBustedLabel.Visible = true;
-                playerGamesWon += addOnePoint;
-                gamesWonTexts[player].Text = playerGamesWon.ToString();
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
                 dealButton.Enabled = true;
@@ -92,28 +94,22 @@ namespace Games {
             }
 
             if (playerPoints > WINNING_POINTS) {
+                if (close == "no") {
+                    dealerGamesWon += addOnePoint;
+                    gamesWonTexts[dealer].Text = dealerGamesWon.ToString();
+                }
                 playerBustedLabel.Visible = true;
-                dealerGamesWon += addOnePoint;
-                gamesWonTexts[dealer].Text = dealerGamesWon.ToString();
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
                 dealButton.Enabled = true;
                 result = MessageBox.Show("House won! Better luck next time", "Game Over");
                 return true;
             }
-
-            if (playerPoints == dealerPoints) {
-                hitButton.Enabled = false;
-                standButton.Enabled = false;
-                dealButton.Enabled = true;
-                result = MessageBox.Show("It was a draw", "Game Over");
-                return true;
-            }
             return false;
         }
 
         private void DetermineWinner(string close = "no") {
-            bool score = ScoreMessage();
+            bool score = ScoreMessage(close);
 
             if (score == false) {
                 if (playerPoints > dealerPoints) {
@@ -195,11 +191,22 @@ namespace Games {
         }
 
         private void hitButton_Click(object sender, EventArgs e) {
-            TwentyOneGame.DealOneCardTo(player);
+            Card card = TwentyOneGame.DealOneCardTo(player);
+            FaceValue cardValue = card.GetFaceValue();
+
+            if (cardValue == FaceValue.Ace) {
+                result = MessageBox.Show("Count Ace as One?", "You got an ace!",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes) {
+                    TwentyOneGame.IncrementNumOfUserAcesWithVAlueOne();
+                    acesValuedOneText.Text = TwentyOneGame.GetNumOfUserAcesWithValueOne().ToString();
+                }
+            }
+
             TwentyOneGame.CalculateHandTotal(player);
             pointsLabels[player].Text = TwentyOneGame.GetTotalPoints(player).ToString();
             Hand playerHand = TwentyOneGame.GetHand(player);
-            PlayerAceValue(playerHand);
             DisplayGuiHand(playerHand, playerTable);
 
             ScoreMessage();
@@ -217,6 +224,13 @@ namespace Games {
                 pointsLabels[dealer].Text = dealerPoints.ToString();
                 Hand dealerHand = TwentyOneGame.GetHand(dealer);
                 DisplayGuiHand(dealerHand, dealerTable);
+            }
+
+            if (playerPoints == dealerPoints) {
+                hitButton.Enabled = false;
+                standButton.Enabled = false;
+                dealButton.Enabled = true;
+                result = MessageBox.Show("It was a draw", "Game Over");
             }
 
             DetermineWinner();
