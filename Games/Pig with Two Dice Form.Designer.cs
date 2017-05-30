@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.rollOrHoldLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.firstDiceImage = new System.Windows.Forms.PictureBox();
@@ -36,6 +37,7 @@
             this.anotherGameGroup = new System.Windows.Forms.GroupBox();
             this.noButton = new System.Windows.Forms.RadioButton();
             this.yesButton = new System.Windows.Forms.RadioButton();
+            this.animationTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.firstDiceImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.secondDiceImage)).BeginInit();
             this.anotherGameGroup.SuspendLayout();
@@ -170,6 +172,10 @@
             this.yesButton.UseVisualStyleBackColor = true;
             this.yesButton.CheckedChanged += new System.EventHandler(this.playAgain_CheckedChanged);
             // 
+            // animationTimer
+            // 
+            this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
+            // 
             // pigWithTwoDiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -212,5 +218,6 @@
         private System.Windows.Forms.GroupBox anotherGameGroup;
         private System.Windows.Forms.RadioButton yesButton;
         private System.Windows.Forms.RadioButton noButton;
+        private System.Windows.Forms.Timer animationTimer;
     }
 }
