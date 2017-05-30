@@ -122,6 +122,7 @@
             this.rollButton.TabIndex = 8;
             this.rollButton.Text = "Roll";
             this.rollButton.UseVisualStyleBackColor = false;
+            this.rollButton.Click += new System.EventHandler(this.rollButton_Click);
             // 
             // holdButton
             // 
@@ -132,6 +133,7 @@
             this.holdButton.TabIndex = 9;
             this.holdButton.Text = "Hold";
             this.holdButton.UseVisualStyleBackColor = false;
+            this.holdButton.Click += new System.EventHandler(this.holdButton_Click);
             // 
             // anotherGameGroup
             // 

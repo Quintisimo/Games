@@ -12,7 +12,6 @@ using Game_Logic_Library;
 
 namespace Games { 
     public partial class twentyOneGameForm : Form {
-        const int NUM_OF_PLAYERS = 2;
         const int WINNING_POINTS = 21;
 
         TableLayoutPanel[] tableLayoutPanel;
@@ -35,10 +34,10 @@ namespace Games {
 
             int initialValue = 0;
 
-            tableLayoutPanel = new TableLayoutPanel[NUM_OF_PLAYERS] { dealerTable, playerTable };
-            bustedLabels = new Label[NUM_OF_PLAYERS] { dealerBustedLabel, playerBustedLabel };
-            pointsLabels = new Label[NUM_OF_PLAYERS] { dealerPointsLabel, playerPointsLabel };
-            gamesWonTexts = new TextBox[NUM_OF_PLAYERS] { dealerGamesWonText, playerGamesWonText };
+            tableLayoutPanel = new TableLayoutPanel[] { dealerTable, playerTable };
+            bustedLabels = new Label[] { dealerBustedLabel, playerBustedLabel };
+            pointsLabels = new Label[] { dealerPointsLabel, playerPointsLabel };
+            gamesWonTexts = new TextBox[] { dealerGamesWonText, playerGamesWonText };
             gamesWonTexts[dealer].Text = initialValue.ToString();
             gamesWonTexts[player].Text = initialValue.ToString();
             dealerGamesWon = TwentyOneGame.GetNumOfGamesWon(dealer);

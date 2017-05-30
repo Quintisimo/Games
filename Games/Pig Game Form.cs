@@ -57,14 +57,12 @@ namespace Games {
                 string winningPlayer = currentPlayer + " has won";
                 MessageBox.Show(winningPlayer, "Game Over", MessageBoxButtons.OKCancel);
                 anotherGameGroup.Enabled = true;
-                
             }
         }
 
         private void holdButton_Click(object sender, EventArgs e) {
             currentPlayer = Pig_Single_Die_Game.GetNextPlayerName();
             turnLabel.Text = currentPlayer;
-          
         }
 
         private void playAgain_CheckedChanged(object sender, EventArgs e) {
@@ -74,8 +72,6 @@ namespace Games {
             } else if (noButton.Checked == true) {
                 this.Close();
             }
-
         }
-
     }
 }
