@@ -6,33 +6,46 @@ using System.Threading.Tasks;
 using Low_Level_Objects_Library;
 
 namespace Game_Logic_Library {
-    public static class Pig_Single_Die_Game {
-        private static Die die;
-        private static int faceValue;
-        private static int[] pointsTotal;
+    public static class Pig_Double_Dice_Game {
+        private static Die[] dice;
+        private static int[] faceValue;
+        private static int[] pointsTotal; 
         private static string[] playersName;
+        private static int firstDice = 0;
+        private static int secondDice = 1;
+        private const int NUM_OF_PLAYERS = 2;
         private static string currentPlayer;
         private static int player1 = 0;
         private static int player2 = 1;
 
         public static void SetUpGame() {
-            die = new Die();
-            faceValue = 0;
+            dice = new Die[NUM_OF_PLAYERS];
+            dice[firstDice] = new Die();
+            dice[secondDice] = new Die();
+            faceValue = new int[] { 0, 0 };
             pointsTotal = new int[] { 0, 0 };
             playersName = new string[] { "Player 1", "Player 2" };
             currentPlayer = GetFirstPlayerName();
         }
 
         public static bool PlayGame() {
-            die.RollDie();
-            faceValue = GetFaceValue();
+            dice[firstDice].RollDie();
+            dice[secondDice].RollDie();
+            faceValue[firstDice] = GetFaceValue(firstDice);
+            faceValue[secondDice] = GetFaceValue(secondDice);
             int noPoints = 1;
+            int maxPoints = 25;
+            int pointsMultiplier = 2;
             int points;
 
-            if (faceValue == noPoints) {
+            if (faceValue[firstDice] == noPoints || faceValue[secondDice] == noPoints) {
                 return true;
+            } else if (faceValue[firstDice] == noPoints && faceValue[secondDice] == noPoints) {
+                points = maxPoints;
+            } else if (faceValue[firstDice] == faceValue[secondDice]) {
+                points = (faceValue[firstDice] + faceValue[secondDice]) * pointsMultiplier;
             } else {
-                points = faceValue;
+                points = faceValue[firstDice] + faceValue[secondDice];
             }
 
             if (currentPlayer == playersName[player1]) {
@@ -44,7 +57,7 @@ namespace Game_Logic_Library {
         }
 
         public static bool HasWon() {
-            int winingScore = 30;
+            int winingScore = 100;
             int playersCurrentScore;
 
             if (currentPlayer == playersName[player1]) {
@@ -65,7 +78,7 @@ namespace Game_Logic_Library {
             currentPlayer = playersName[player1];
             return currentPlayer;
         }
-     
+
         public static string GetNextPlayerName() {
             if (currentPlayer == playersName[player1]) {
                 currentPlayer = playersName[player2];
@@ -77,17 +90,16 @@ namespace Game_Logic_Library {
         }
 
         public static int GetPointsTotal(string nameOfPlayer) {
-
             if (nameOfPlayer == playersName[player1]) {
                 return pointsTotal[player1];
-            } else if (nameOfPlayer == playersName[player2]) { 
+            } else if (nameOfPlayer == playersName[player2]) {
                 return pointsTotal[player2];
             }
             return 0;
         }
 
-        public static int GetFaceValue() {
-            return die.GetFaceValue();
+        public static int GetFaceValue(int whichDie) {
+            return dice[whichDie].GetFaceValue();
         }
     }
 }

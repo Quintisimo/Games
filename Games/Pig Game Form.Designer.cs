@@ -90,14 +90,14 @@
             // 
             // playerOneText
             // 
-            this.playerOneText.Location = new System.Drawing.Point(591, 81);
+            this.playerOneText.Location = new System.Drawing.Point(591, 84);
             this.playerOneText.Name = "playerOneText";
             this.playerOneText.Size = new System.Drawing.Size(159, 31);
             this.playerOneText.TabIndex = 5;
             // 
             // playerTwoText
             // 
-            this.playerTwoText.Location = new System.Drawing.Point(591, 137);
+            this.playerTwoText.Location = new System.Drawing.Point(591, 140);
             this.playerTwoText.Name = "playerTwoText";
             this.playerTwoText.Size = new System.Drawing.Size(159, 31);
             this.playerTwoText.TabIndex = 6;

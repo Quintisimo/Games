@@ -12,13 +12,16 @@ namespace Game_Logic_Library {
         private static int[] totalPoints;
         private static int[] numOfGamesWon = new int[] { 0, 0 };
         private static int numOfUserAcesWithValueOne;
+        private static int addOneAce = 1;
         private static int acesInPlayersHand;
+        private const int NUM_OF_PLAYERS = 2;
         private static int dealer = 0;
         private static int player = 1;
 
         public static void SetUpGame() {
-            hands = new Hand[2];
+            hands = new Hand[NUM_OF_PLAYERS];
             cardPile = new CardPile(true);
+            cardPile.Shuffle();
             hands[dealer] = new Hand(cardPile.DealCards(2));
             hands[player] = new Hand(cardPile.DealCards(2));
             ResetTotals();
@@ -80,8 +83,8 @@ namespace Game_Logic_Library {
 
         public static void IncrementNumOfUserAcesWithVAlueOne() {
             acesInPlayersHand = 0;
-            numOfUserAcesWithValueOne = numOfUserAcesWithValueOne + 1;
-            acesInPlayersHand = 1;
+            numOfUserAcesWithValueOne = numOfUserAcesWithValueOne + addOneAce;
+            acesInPlayersHand = addOneAce;
         }
 
         public static void ResetTotals() {
