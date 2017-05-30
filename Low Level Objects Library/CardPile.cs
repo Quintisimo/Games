@@ -28,7 +28,7 @@ namespace Low_Level_Objects_Library {
         public static int NUM_CARDS_PER_SUIT = 13;
         private List<Card> pile;
 
-        private static Random randomValue = new Random(10);
+        private static Random randomValue = new Random();
 
         
         /// <summary>
@@ -129,6 +129,17 @@ namespace Low_Level_Objects_Library {
                        
             return cards;
         } //end DealCards
+
+        /// <summary>
+        /// Removes the last card in the pile.
+        ///
+        /// If pile is empty an IndexOutOfRangeException will occur
+        /// </summary>
+        public void RemoveLastCard() {
+
+            pile.RemoveAt(pile.Count - 1);
+
+        } // end RemoveLastCard
 
         /// <summary>
         /// Determines the colour of the Suit

@@ -10,8 +10,9 @@ namespace Game_Logic_Library {
         private static CardPile cardPile;
         private static Hand[] hands;
         private static int[] totalPoints;
-        private static int[] numOfGamesWon;
+        private static int[] numOfGamesWon = new int[] { 0, 0 };
         private static int numOfUserAcesWithValueOne;
+        private static int acesInPlayersHand;
         private static int dealer = 0;
         private static int player = 1;
 
@@ -22,7 +23,7 @@ namespace Game_Logic_Library {
             hands[player] = new Hand(cardPile.DealCards(2));
             ResetTotals();
         }
-        
+
         public static Card DealOneCardTo(int who) {
             Card temp = cardPile.DealOneCard();
             hands[who].Add(temp);
@@ -37,13 +38,13 @@ namespace Game_Logic_Library {
                 int faceCard = 10;
                 int numberCard = 2;
 
-                if (temp == FaceValue.Ten || temp == FaceValue.Jack || 
+                if (temp == FaceValue.Ten || temp == FaceValue.Jack ||
                     temp == FaceValue.Queen || temp == FaceValue.King) {
                     result += faceCard;
 
-                } else if(temp == FaceValue.Ace) {
+                } else if (temp == FaceValue.Ace) {
 
-                    if (who == player && GetNumOfUserAcesWithValueOne() > 0) {
+                    if (who == player && acesInPlayersHand > 0) {
                         result += 1;
                     } else {
                         result += 11;
@@ -78,14 +79,15 @@ namespace Game_Logic_Library {
         }
 
         public static void IncrementNumOfUserAcesWithVAlueOne() {
+            acesInPlayersHand = 0;
             numOfUserAcesWithValueOne = numOfUserAcesWithValueOne + 1;
-        } 
+            acesInPlayersHand = 1;
+        }
 
         public static void ResetTotals() {
             totalPoints = new int[] { 0, 0 };
             numOfUserAcesWithValueOne = 0;
-            numOfGamesWon = new int[] { 0, 0 };
-
         }
     }
 }
+ 

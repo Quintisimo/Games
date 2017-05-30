@@ -46,6 +46,7 @@
             // 
             // dealerTable
             // 
+            this.dealerTable.AutoSize = true;
             this.dealerTable.ColumnCount = 8;
             this.dealerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.dealerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -64,6 +65,7 @@
             // 
             // playerTable
             // 
+            this.playerTable.AutoSize = true;
             this.playerTable.ColumnCount = 8;
             this.playerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.playerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -190,6 +192,7 @@
             this.hitButton.TabIndex = 13;
             this.hitButton.Text = "Hit";
             this.hitButton.UseVisualStyleBackColor = true;
+            this.hitButton.Click += new System.EventHandler(this.hitButton_Click);
             // 
             // standButton
             // 
@@ -209,6 +212,7 @@
             this.cancelGameButton.TabIndex = 15;
             this.cancelGameButton.Text = "Cancel Game";
             this.cancelGameButton.UseVisualStyleBackColor = true;
+            this.cancelGameButton.Click += new System.EventHandler(this.cancelGameButton_Click);
             // 
             // testButton
             // 

@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace Games {
     public partial class cardGamesForm : Form {
+
+        private twentyOneGameForm TwentyOneForm;
+
+
         public cardGamesForm() {
             InitializeComponent();
             cardGameSelection.Items.Add("");
@@ -28,12 +32,19 @@ namespace Games {
         private void cardGameSelection_SelectedIndexChanged(object sender, EventArgs e) {
             int solitaire = 1;
             int twentyOne = 2;
+            int reset = -1;
 
             if (cardGameSelection.SelectedIndex == solitaire) {
                 solitaireForm SolitaireForm = new solitaireForm();
+           
+                cardGameSelection.SelectedIndex = reset;
                 SolitaireForm.Show();
             } else if (cardGameSelection.SelectedIndex == twentyOne) {
-                twentyOneGameForm TwentyOneForm = new twentyOneGameForm();
+
+                if (TwentyOneForm == null || TwentyOneForm.IsDisposed) {
+                    TwentyOneForm = new twentyOneGameForm();
+                }
+                cardGameSelection.SelectedIndex = reset;
                 TwentyOneForm.Show();
             }
         }
