@@ -50,21 +50,6 @@ namespace Games {
             animationTimer.Start();
         }
 
-        private void holdButton_Click(object sender, EventArgs e) {
-            currentPlayer = Pig_Double_Dice_Game.GetNextPlayerName();
-            turnLabel.Text = currentPlayer;
-        }
-
-        private void playAgain_CheckedChanged(object sender, EventArgs e) {
-            if (yesButton.Checked == true) {
-                ResetForm();
-                yesButton.Checked = false;
-            } else if (noButton.Checked == true) {
-                this.Close();
-            }
-
-        }
-
         private void animationTimer_Tick(object sender, EventArgs e) {
             counter++;
             int animationDuration = 11;
@@ -105,6 +90,21 @@ namespace Games {
                 }
                 rollButton.Enabled = true;
             }
+        }
+
+        private void holdButton_Click(object sender, EventArgs e) {
+            currentPlayer = Pig_Double_Dice_Game.GetNextPlayerName();
+            turnLabel.Text = currentPlayer;
+        }
+
+        private void playAgain_CheckedChanged(object sender, EventArgs e) {
+            if (yesButton.Checked == true) {
+                ResetForm();
+                yesButton.Checked = false;
+            } else if (noButton.Checked == true) {
+                this.Close();
+            }
+
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Game_Logic_Library {
         private static int addOneAce = 1;
         private static int acesInPlayersHand;
         private const int NUM_OF_PLAYERS = 2;
+        private static int initialCards = 2;
         private static int dealer = 0;
         private static int player = 1;
 
@@ -22,8 +23,8 @@ namespace Game_Logic_Library {
             hands = new Hand[NUM_OF_PLAYERS];
             cardPile = new CardPile(true);
             cardPile.Shuffle();
-            hands[dealer] = new Hand(cardPile.DealCards(2));
-            hands[player] = new Hand(cardPile.DealCards(2));
+            hands[dealer] = new Hand(cardPile.DealCards(initialCards));
+            hands[player] = new Hand(cardPile.DealCards(initialCards));
             ResetTotals();
         }
 

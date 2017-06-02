@@ -160,8 +160,8 @@ namespace Games {
             testCardPile.Shuffle();
             Hand testHandForDealer = new Hand(testCardPile.DealCards(testNumOfCardsForDealer));
             Hand testHandForPlayer = new Hand(testCardPile.DealCards(testNumOfCardsForPlayer));
-            DisplayGuiHand(testHandForDealer, dealerTable);
-            DisplayGuiHand(testHandForPlayer, playerTable);
+            DisplayGuiHand(testHandForDealer, tableLayoutPanel[dealer]);
+            DisplayGuiHand(testHandForPlayer, tableLayoutPanel[player]);
         }
 
         private void dealButton_Click(object sender, EventArgs e) {
@@ -174,7 +174,7 @@ namespace Games {
             bustedLabels[player].Visible = false;
 
             Hand dealerHand = TwentyOneGame.GetHand(dealer);
-            DisplayGuiHand(dealerHand, dealerTable);
+            DisplayGuiHand(dealerHand, tableLayoutPanel[dealer]);
             pointsLabels[dealer].Visible = true;
             TwentyOneGame.CalculateHandTotal(dealer);
             pointsLabels[dealer].Text = TwentyOneGame.GetTotalPoints(dealer).ToString();
@@ -182,7 +182,7 @@ namespace Games {
 
             Hand playerHand = TwentyOneGame.GetHand(player);
             PlayerAceValue(playerHand);
-            DisplayGuiHand(playerHand, playerTable);
+            DisplayGuiHand(playerHand, tableLayoutPanel[player]);
             pointsLabels[player].Visible = true;
             TwentyOneGame.CalculateHandTotal(player);
             pointsLabels[player].Text = TwentyOneGame.GetTotalPoints(player).ToString();
@@ -207,7 +207,7 @@ namespace Games {
             TwentyOneGame.CalculateHandTotal(player);
             pointsLabels[player].Text = TwentyOneGame.GetTotalPoints(player).ToString();
             Hand playerHand = TwentyOneGame.GetHand(player);
-            DisplayGuiHand(playerHand, playerTable);
+            DisplayGuiHand(playerHand, tableLayoutPanel[player]);
 
             ScoreMessage();
         }
@@ -223,7 +223,7 @@ namespace Games {
                 dealerPoints = TwentyOneGame.GetTotalPoints(dealer);
                 pointsLabels[dealer].Text = dealerPoints.ToString();
                 Hand dealerHand = TwentyOneGame.GetHand(dealer);
-                DisplayGuiHand(dealerHand, dealerTable);
+                DisplayGuiHand(dealerHand, tableLayoutPanel[dealer]);
             }
 
             if (playerPoints == dealerPoints) {
