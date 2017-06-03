@@ -25,10 +25,10 @@
         private void InitializeComponent() {
             this.drawPileImage = new System.Windows.Forms.PictureBox();
             this.discardPileImage = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.suitPileImage1 = new System.Windows.Forms.PictureBox();
+            this.suitPileImage4 = new System.Windows.Forms.PictureBox();
+            this.suitPileImage3 = new System.Windows.Forms.PictureBox();
+            this.suitPileImage2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -38,77 +38,79 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.drawPileImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardPileImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage2)).BeginInit();
             this.SuspendLayout();
             // 
             // drawPileImage
             // 
             this.drawPileImage.BackColor = System.Drawing.Color.White;
             this.drawPileImage.Location = new System.Drawing.Point(34, 17);
-            this.drawPileImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.drawPileImage.Margin = new System.Windows.Forms.Padding(4);
             this.drawPileImage.Name = "drawPileImage";
             this.drawPileImage.Size = new System.Drawing.Size(65, 95);
             this.drawPileImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.drawPileImage.TabIndex = 0;
             this.drawPileImage.TabStop = false;
+            this.drawPileImage.Click += new System.EventHandler(this.drawPileImage_Click);
             // 
             // discardPileImage
             // 
             this.discardPileImage.BackColor = System.Drawing.SystemColors.Control;
             this.discardPileImage.Location = new System.Drawing.Point(172, 17);
-            this.discardPileImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.discardPileImage.Margin = new System.Windows.Forms.Padding(4);
             this.discardPileImage.Name = "discardPileImage";
             this.discardPileImage.Size = new System.Drawing.Size(65, 95);
             this.discardPileImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.discardPileImage.TabIndex = 1;
             this.discardPileImage.TabStop = false;
+            this.discardPileImage.Click += new System.EventHandler(this.discardPileImage_Click);
             // 
-            // pictureBox1
+            // suitPileImage1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(318, 17);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(65, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.suitPileImage1.BackColor = System.Drawing.Color.White;
+            this.suitPileImage1.Location = new System.Drawing.Point(318, 17);
+            this.suitPileImage1.Margin = new System.Windows.Forms.Padding(4);
+            this.suitPileImage1.Name = "suitPileImage1";
+            this.suitPileImage1.Size = new System.Drawing.Size(65, 95);
+            this.suitPileImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.suitPileImage1.TabIndex = 2;
+            this.suitPileImage1.TabStop = false;
             // 
-            // pictureBox2
+            // suitPileImage4
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.White;
-            this.pictureBox2.Location = new System.Drawing.Point(774, 17);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(65, 95);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
+            this.suitPileImage4.BackColor = System.Drawing.Color.White;
+            this.suitPileImage4.Location = new System.Drawing.Point(774, 17);
+            this.suitPileImage4.Margin = new System.Windows.Forms.Padding(4);
+            this.suitPileImage4.Name = "suitPileImage4";
+            this.suitPileImage4.Size = new System.Drawing.Size(65, 95);
+            this.suitPileImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.suitPileImage4.TabIndex = 3;
+            this.suitPileImage4.TabStop = false;
             // 
-            // pictureBox3
+            // suitPileImage3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.Location = new System.Drawing.Point(624, 17);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(65, 95);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
+            this.suitPileImage3.BackColor = System.Drawing.Color.White;
+            this.suitPileImage3.Location = new System.Drawing.Point(624, 17);
+            this.suitPileImage3.Margin = new System.Windows.Forms.Padding(4);
+            this.suitPileImage3.Name = "suitPileImage3";
+            this.suitPileImage3.Size = new System.Drawing.Size(65, 95);
+            this.suitPileImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.suitPileImage3.TabIndex = 4;
+            this.suitPileImage3.TabStop = false;
             // 
-            // pictureBox4
+            // suitPileImage2
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.White;
-            this.pictureBox4.Location = new System.Drawing.Point(470, 17);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(65, 95);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
+            this.suitPileImage2.BackColor = System.Drawing.Color.White;
+            this.suitPileImage2.Location = new System.Drawing.Point(470, 17);
+            this.suitPileImage2.Margin = new System.Windows.Forms.Padding(4);
+            this.suitPileImage2.Name = "suitPileImage2";
+            this.suitPileImage2.Size = new System.Drawing.Size(65, 95);
+            this.suitPileImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.suitPileImage2.TabIndex = 5;
+            this.suitPileImage2.TabStop = false;
             // 
             // tableLayoutPanel1
             // 
@@ -116,7 +118,7 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(40, 208);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 15;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666F));
@@ -143,7 +145,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Location = new System.Drawing.Point(172, 208);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 15;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666F));
@@ -170,7 +172,7 @@
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Location = new System.Drawing.Point(292, 208);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 15;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666F));
@@ -197,7 +199,7 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Location = new System.Drawing.Point(408, 208);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 15;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666F));
@@ -224,7 +226,7 @@
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Location = new System.Drawing.Point(518, 208);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 15;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666F));
@@ -251,7 +253,7 @@
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Location = new System.Drawing.Point(634, 208);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 15;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666F));
@@ -278,7 +280,7 @@
             this.tableLayoutPanel7.ColumnCount = 1;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Location = new System.Drawing.Point(748, 208);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 15;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.666666F));
@@ -312,21 +314,21 @@
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.suitPileImage2);
+            this.Controls.Add(this.suitPileImage3);
+            this.Controls.Add(this.suitPileImage4);
+            this.Controls.Add(this.suitPileImage1);
             this.Controls.Add(this.discardPileImage);
             this.Controls.Add(this.drawPileImage);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "solitaireForm";
             this.Text = "Solitaire";
             ((System.ComponentModel.ISupportInitialize)(this.drawPileImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardPileImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suitPileImage2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,10 +338,10 @@
 
         private System.Windows.Forms.PictureBox drawPileImage;
         private System.Windows.Forms.PictureBox discardPileImage;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox suitPileImage1;
+        private System.Windows.Forms.PictureBox suitPileImage4;
+        private System.Windows.Forms.PictureBox suitPileImage3;
+        private System.Windows.Forms.PictureBox suitPileImage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;

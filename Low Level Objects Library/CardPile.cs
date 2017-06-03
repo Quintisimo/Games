@@ -136,9 +136,7 @@ namespace Low_Level_Objects_Library {
         /// If pile is empty an IndexOutOfRangeException will occur
         /// </summary>
         public void RemoveLastCard() {
-
             pile.RemoveAt(pile.Count - 1);
-
         } // end RemoveLastCard
 
         /// <summary>
