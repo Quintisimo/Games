@@ -17,7 +17,7 @@ namespace Games {
         Card card;
         Card prevoiusClickedCard;
         int faceUpCards = 1;
-        const int TABLE_FACEUP_CARDS = 1;
+        int[] tableFaceUpCards = new int[] {0, 0, 0, 0, 0, 0, 0};
         int discardPileCardValue;
         Suit discardPileCardSuit;
         Colour discardPileCardColour;
@@ -115,6 +115,7 @@ namespace Games {
                             int numOfCards = hand.GetCount() - faceUpCards;
                             DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
                             faceUpCards += one;
+                            tableFaceUpCards[i] += one;
                         }
                     }
                     card = Solitare_Game.DiscardPileCard();
@@ -148,12 +149,15 @@ namespace Games {
                             Hand hand = Solitare_Game.GetTableauPile(i);
 
                             if (hand.Contains(prevoiusClickedCard)) {
-                                int numOfCards = hand.GetCount() - TABLE_FACEUP_CARDS;
-                                DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
-                            } else {
-                                int numOfCards = hand.GetCount();
-                                DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
+                                tableFaceUpCards[i] += one;
+                                break;
                             }
+                        }
+
+                        for (int i = 0; i < tableLayoutPanels.Length; i++) {
+                            Hand hand = Solitare_Game.GetTableauPile(i);
+                            int numOfCards = hand.GetCount() - tableFaceUpCards[i];
+                            DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
                         }
                     }
                 }
