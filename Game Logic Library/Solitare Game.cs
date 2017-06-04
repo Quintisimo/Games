@@ -82,5 +82,17 @@ namespace Game_Logic_Library {
                 }
             }
         }
+
+        public static void MoveTableauCard(Card addCard, Card otherCard) {
+            for (int i = 0; i < tableauPiles.Length; i++) {
+                if (tableauPiles[i].Contains(addCard)) {
+                    tableauPiles[i].Remove(addCard);
+                }
+
+                if (tableauPiles[i].Contains(otherCard)) {
+                    tableauPiles[i].Add(addCard);
+                }
+            }
+        }
     }
 }
