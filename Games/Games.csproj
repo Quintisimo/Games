@@ -54,11 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game Type.cs">
+    <Compile Include="Play Games.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Game Type.Designer.cs">
-      <DependentUpon>Game Type.cs</DependentUpon>
+    <Compile Include="Play Games.Designer.cs">
+      <DependentUpon>Play Games.cs</DependentUpon>
     </Compile>
     <Compile Include="Images.cs" />
     <Compile Include="Pig Game Form.cs">
@@ -99,8 +99,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Game Type.resx">
-      <DependentUpon>Game Type.cs</DependentUpon>
+    <EmbeddedResource Include="Play Games.resx">
+      <DependentUpon>Play Games.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pig Game Form.resx">
       <DependentUpon>Pig Game Form.cs</DependentUpon>

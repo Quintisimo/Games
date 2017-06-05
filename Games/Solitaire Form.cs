@@ -65,6 +65,7 @@ namespace Games {
                     pictureBox.Image = Images.GetCardImage(card);
                     // set event-handler for Click on this PictureBox.
                     pictureBox.Click += new EventHandler(pictureBox_Click);
+                    pictureBox.DoubleClick += new EventHandler(pictureBox_DoubleClick);
                     // tell the PictureBox which Card object it has the picture of.
                     pictureBox.Tag = card;
                 } else {
@@ -84,17 +85,27 @@ namespace Games {
             TryToPlayCard(clickedCard);
         }
 
+        private void pictureBox_DoubleClick(object sender, EventArgs e) {
+            // which card was clicked?
+            PictureBox clickedPictureBox = (PictureBox)sender;
+            // get a reference to the card
+            Card clickedCard = (Card)clickedPictureBox.Tag;
+            MoveToAcePile(clickedCard);
+        }
+
         private void TryToPlayCard(Card clickedCard) {
             // This MessageBox.Show is for debugging purposes only.
             // comment out line, once sure you can click on a card in a tableau
             //MessageBox.Show(clickedCard.ToString(false, true), "Clicked");
             // Add code to do something with the clicked card.
+            bool hasWon = Solitare_Game.HasWon();
             FaceValue clickedCardValue = clickedCard.GetFaceValue();
             int clickedValue = (int)clickedCardValue;
             Suit clickedCardSuit = clickedCard.GetSuit();
             Colour clickedCardColour;
-            int one = 1;
-            int zero = 0;
+            int oneCard = 1;
+            int noCards = 0;
+
 
             if (clickedCardSuit == Suit.Hearts || clickedCardSuit == Suit.Diamonds) {
                 clickedCardColour = Colour.Red;
@@ -111,10 +122,10 @@ namespace Games {
                 }
 
                 if (clickedCardValue == FaceValue.Ace) {
-                    Solitare_Game.AddToSuitPile(clickedCard);
+                    Solitare_Game.AddAceToSuitPile(clickedCard);
                 }
 
-                if (clickedValue == discardPileCardValue + one &&
+                if (clickedValue == discardPileCardValue + oneCard &&
                     discardPileCardColour != clickedCardColour) {
                     Solitare_Game.AddToTableauPile(clickedCard, card);
 
@@ -122,7 +133,7 @@ namespace Games {
                         Hand hand = Solitare_Game.GetTableauPile(i);
 
                         if (hand.Contains(card)) {
-                            tableFaceUpCards[i] += one;
+                            tableFaceUpCards[i] += oneCard;
                             int numOfCards = hand.GetCount() - tableFaceUpCards[i];
                             DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
                         }
@@ -151,7 +162,7 @@ namespace Games {
                         prevoiusClickedCardColour = Colour.Black;
                     }
 
-                    if (clickedValue == prevoiusClickedCardValue + one &&
+                    if (clickedValue == prevoiusClickedCardValue + oneCard &&
                         prevoiusClickedCardColour != clickedCardColour) {
                         int position = Solitare_Game.MoveTableauCard(previousClickedCard, clickedCard);
                         faceCardsListArray[position].Add(clickedCard);
@@ -160,12 +171,12 @@ namespace Games {
                         for (int i = 0; i < tableFaceUpCards.Length; i++) {
                             Hand hand = Solitare_Game.GetTableauPile(i);
 
-                            if (tableFaceUpCards[i] > 0 && faceCardsListArray[i].Count() > zero) {
+                            if (tableFaceUpCards[i] > 0 && faceCardsListArray[i].Count() > noCards) {
 
                                 foreach (var card in faceCardsListArray[i]) {
                                     Solitare_Game.MoveTableauCard(card, clickedCard);
                                 }
-                                tableFaceUpCards[i] = zero;
+                                tableFaceUpCards[i] = noCards;
                             }
                         }
 
@@ -175,7 +186,7 @@ namespace Games {
                                     Hand hand = Solitare_Game.GetTableauPile(j);
 
                                     if (hand.Contains(card)) {
-                                        tableFaceUpCards[j] += one;
+                                        tableFaceUpCards[j] += oneCard;
                                         break;
                                     }
                                 }
@@ -191,7 +202,43 @@ namespace Games {
                     }
                 }
                 previousClickedCard = clickedCard;
+                if (hasWon) {
+                    MessageBox.Show("Congrates! You have won", "Winner", MessageBoxButtons.OK);
+                }
             }
+        }
+
+        /// <summary>
+        /// Moves card from tableau pile to ace pile
+        /// </summary>
+        /// <param name="clickedCard">card to be moved</param>
+        private void MoveToAcePile(Card clickedCard) {
+            bool addCard = Solitare_Game.AddCardToSuitPile(clickedCard);
+
+            for (int i = 0; i < suitPiles.Length; i++) {
+                card = Solitare_Game.SuitPileCard(i);
+
+                if (card != null) {
+                    suitPiles[i].Image = Images.GetCardImage(card);
+                }
+            }
+
+            for (int i = 0; i < tableLayoutPanels.Length; i++) {
+                Hand hand = Solitare_Game.GetTableauPile(i);
+
+                if (hand.Contains(clickedCard)) {
+                    hand.Remove(clickedCard);
+                }
+
+                int numOfCards = hand.GetCount() - tableFaceUpCards[i];
+                DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
+            }
+
+            if (!addCard) {
+                MessageBox.Show("Cannot move card to suit pile", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void drawPileImage_Click(object sender, EventArgs e) {
@@ -210,6 +257,7 @@ namespace Games {
         }
 
         private void discardPileImage_Click(object sender, EventArgs e) {
+            bool hasWon = Solitare_Game.HasWon();
 
             if (card != null && card == previousClickedCard) {
                 MessageBox.Show("Cannot place card onto discard pile", "Error", 
@@ -222,7 +270,7 @@ namespace Games {
                 discardPileCardSuit = card.GetSuit();
 
                 if (cardValue == FaceValue.Ace) {
-                    Solitare_Game.AddToSuitPile(card);
+                    Solitare_Game.AddAceToSuitPile(card);
 
                     foreach (PictureBox picture in suitPiles) {
 
@@ -231,10 +279,33 @@ namespace Games {
                             break;
                         }
                     }
-                    card = Solitare_Game.DiscardPileCard();
+                } else {
+                    bool addCard = Solitare_Game.AddCardToSuitPile(card);
+
+                    for (int i = 0; i < suitPiles.Length; i++) {
+                        card = Solitare_Game.SuitPileCard(i);
+
+                        if (card != null) {
+                            suitPiles[i].Image = Images.GetCardImage(card);
+                        }
+                    }
+
+                    if (!addCard) {
+                        MessageBox.Show("Cannot move card to suit pile", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                card = Solitare_Game.DiscardPileCard();
+
+                if (card != null) {
                     discardPileImage.Image = Images.GetCardImage(card);
                 }
                 previousClickedCard = card;
+                card = null;
+            }
+
+            if (hasWon) {
+                MessageBox.Show("Congrates! You have won", "Winner", MessageBoxButtons.OK);
             }
         }
     }

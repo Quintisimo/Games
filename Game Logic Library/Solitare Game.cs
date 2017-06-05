@@ -20,7 +20,7 @@ namespace Game_Logic_Library {
         private const int NUM_OF_HANDS = 7;
         private static CardPile[] suitPiles;
         private const int NUM_OF_SUITS = 4;
-        private const int addOne = 1;
+        private const int one = 1;
         private const int noCards = 0;
 
         /// <summary>
@@ -28,12 +28,12 @@ namespace Game_Logic_Library {
         /// </summary>
         public static void SetUpGame() {
             drawPile = new CardPile(true);
-            //drawPile.Shuffle();
+            drawPile.Shuffle();
             discardPile = new CardPile();
             tableauPiles = new Hand[NUM_OF_HANDS];
 
             for (int i = 0; i < tableauPiles.Length; i++ ) {
-                tableauPiles[i] = new Hand(drawPile.DealCards(i + addOne));
+                tableauPiles[i] = new Hand(drawPile.DealCards(i + one));
             }
             suitPiles = new CardPile[NUM_OF_SUITS];
 
@@ -98,10 +98,10 @@ namespace Game_Logic_Library {
         }
 
         /// <summary>
-        /// Addes specified card to an empty suitpile
+        /// Adds specified card to an empty suitpile
         /// </summary>
         /// <param name="card">specified card</param>
-        public static void AddToSuitPile(Card card) {
+        public static void AddAceToSuitPile(Card card) {
             for (int i = 0; i < suitPiles.Length; i++) {
 
                 if (suitPiles[i].GetCount() == noCards) {
@@ -109,6 +109,52 @@ namespace Game_Logic_Library {
                     break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Adds card from tableau pile to suit pile
+        /// </summary>
+        /// <param name="card">card to add to suit pile</param>
+        /// <returns>true if card is added to suit pile otherwise false</returns>
+        public static bool AddCardToSuitPile(Card card) {
+            Suit cardSuit = card.GetSuit();
+            FaceValue cardValue = card.GetFaceValue();
+            
+            if (cardValue == FaceValue.Ace) {
+                AddAceToSuitPile(card);
+                return true;
+            }
+
+            for (int i = 0; i < suitPiles.Length; i++) {
+                foreach(var cardpile in suitPiles) {
+
+                    if (cardpile.GetCount() >= one) {
+                        Card topCard = cardpile.GetLastCardInPile();
+                        Suit topCardSuit = topCard.GetSuit();
+                        FaceValue topCardValue = topCard.GetFaceValue();
+
+                        if (topCardSuit == cardSuit) {
+
+                            if (topCardValue == FaceValue.Ace && cardValue == FaceValue.Two) {
+                                suitPiles[i].Add(card);
+                                return true;
+
+                            } else if (cardValue == topCardValue + one) {
+                                suitPiles[i].Add(card);
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static Card SuitPileCard(int which) {
+            if (suitPiles[which].GetCount() > noCards) {
+                return suitPiles[which].GetLastCardInPile();
+            }
+            return null;
         }
 
         /// <summary>
@@ -128,9 +174,9 @@ namespace Game_Logic_Library {
         /// Moves card from one tableaupile to another
         /// </summary>
         /// <param name="addCard">card to be moved</param>
-        /// <param name="otherCard">which tableaupile card has to be moved to</param>
+        /// <param name="tableauPileCard">which tableaupile card has to be moved to</param>
         /// <returns>which tableaupile card was moved to</returns>
-        public static int MoveTableauCard(Card addCard, Card otherCard) {
+        public static int MoveTableauCard(Card addCard, Card tableauPileCard) {
             int position = 0;
 
             for (int i = 0; i < tableauPiles.Length; i++) {
@@ -138,12 +184,27 @@ namespace Game_Logic_Library {
                     tableauPiles[i].Remove(addCard);
                 }
 
-                if (tableauPiles[i].Contains(otherCard)) {
+                if (tableauPiles[i].Contains(tableauPileCard)) {
                     tableauPiles[i].Add(addCard);
                     position = i;
                 }
             }
             return position;
+        }
+
+        /// <summary>
+        /// Checks if player has won the game
+        /// </summary>
+        /// <returns>true if player has won otherwise false</returns>
+        public static bool HasWon() {
+            int winningCount = 13;
+
+            foreach (CardPile cardPile in suitPiles) {
+                if (cardPile.GetCount() == winningCount) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
