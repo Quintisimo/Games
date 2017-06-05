@@ -15,12 +15,12 @@ namespace Games {
         TableLayoutPanel[] tableLayoutPanels;
         PictureBox[] suitPiles;
         Card card;
-        Card prevoiusClickedCard;
-        int faceUpCards = 1;
-        int[] tableFaceUpCards = new int[] {0, 0, 0, 0, 0, 0, 0};
+        Card previousClickedCard;
+        int[] tableFaceUpCards;
         int discardPileCardValue;
         Suit discardPileCardSuit;
         Colour discardPileCardColour;
+        List<Card>[] faceCardsList;
 
         public solitaireForm() {
             InitializeComponent();
@@ -28,6 +28,9 @@ namespace Games {
                 tableLayoutPanel3, tableLayoutPanel4, tableLayoutPanel5, tableLayoutPanel6,
                 tableLayoutPanel7 };
             suitPiles = new PictureBox[] { suitPileImage1, suitPileImage2, suitPileImage3, suitPileImage4 };
+            tableFaceUpCards = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+            faceCardsList = new List<Card>[] { new List<Card>(), new List<Card>(), new List<Card>(),
+                new List<Card>(), new List<Card>(), new List<Card>(), new List<Card>() };
             Solitare_Game.SetUpGame();
 
             for (int i = 0; i < tableLayoutPanels.Length; i++) {
@@ -39,6 +42,12 @@ namespace Games {
             discardPileImage.Image = Images.GetCardImage(Solitare_Game.DrawOneCard());
         }
 
+        /// <summary>
+        /// Dsiplays cards in the specified hand in the specified table in the form
+        /// </summary>
+        /// <param name="hand">specified hand</param>
+        /// <param name="tableLayoutPanel">specified table</param>
+        /// <param name="lastCard">card that needs to be faceup</param>
         private void DisplayGuiHand(Hand hand, TableLayoutPanel tableLayoutPanel, int lastCard) {
             tableLayoutPanel.Controls.Clear(); // Remove any cards already being shown.
             int cardNumber = 0;
@@ -85,6 +94,7 @@ namespace Games {
             Suit clickedCardSuit = clickedCard.GetSuit();
             Colour clickedCardColour;
             int one = 1;
+            int zero = 0;
 
             if (clickedCardSuit == Suit.Hearts || clickedCardSuit == Suit.Diamonds) {
                 clickedCardColour = Colour.Red;
@@ -112,10 +122,9 @@ namespace Games {
                         Hand hand = Solitare_Game.GetTableauPile(i);
 
                         if (hand.Contains(card)) {
-                            int numOfCards = hand.GetCount() - faceUpCards;
-                            DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
-                            faceUpCards += one;
                             tableFaceUpCards[i] += one;
+                            int numOfCards = hand.GetCount() - tableFaceUpCards[i];
+                            DisplayGuiHand(hand, tableLayoutPanels[i], numOfCards);
                         }
                     }
                     card = Solitare_Game.DiscardPileCard();
@@ -124,15 +133,16 @@ namespace Games {
                     } else {
                         discardPileImage.Image = Images.GetCardImage(card);
                     }
+                    card = null;
 
                 } else {
                     MessageBox.Show("Move not allowed - Cannot place card onto this card", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } else {
-                if (prevoiusClickedCard != null) {
-                    int prevoiusClickedCardValue = (int)prevoiusClickedCard.GetFaceValue();
-                    Suit previousClickedCardSuit = prevoiusClickedCard.GetSuit();
+                if (previousClickedCard != null) {
+                    int prevoiusClickedCardValue = (int)previousClickedCard.GetFaceValue();
+                    Suit previousClickedCardSuit = previousClickedCard.GetSuit();
                     Colour prevoiusClickedCardColour;
 
                     if (previousClickedCardSuit == Suit.Hearts || previousClickedCardSuit == Suit.Diamonds) {
@@ -141,14 +151,51 @@ namespace Games {
                         prevoiusClickedCardColour = Colour.Black;
                     }
 
-                    if (clickedValue == prevoiusClickedCardValue + one && 
+                    if (clickedValue == prevoiusClickedCardValue + one &&
                         prevoiusClickedCardColour != clickedCardColour) {
-                        Solitare_Game.MoveTableauCard(prevoiusClickedCard, clickedCard);
+                        Solitare_Game.MoveTableauCard(previousClickedCard, clickedCard);
+
+                        for (int i = 0; i < faceCardsList.Length; i++) {
+                            Hand hand = Solitare_Game.GetTableauPile(i);
+
+                            foreach(var card in faceCardsList[i]) {
+                                if (hand.Contains(clickedCard)) {
+                                    faceCardsList[i].Add(clickedCard);
+                                    faceCardsList[i].Add(previousClickedCard);
+                                }
+                            }
+                        }
+
+                        for (int i = 0; i < tableFaceUpCards.Length; i++) {
+                            Hand hand = Solitare_Game.GetTableauPile(i);
+
+                            if (tableFaceUpCards[i] > 0) {
+
+                                foreach (var card in faceCardsList[i]) {
+                                    Solitare_Game.MoveTableauCard(card, clickedCard);
+                                }
+                                tableFaceUpCards[i] = zero;
+                            }
+                        }
+
+                        for (int i = 0; i < faceCardsList.Length; i++) {
+                            foreach (var card in faceCardsList[i]) {
+                                for (int j = 0; j < tableLayoutPanels.Length; j++) {
+                                    Hand hand = Solitare_Game.GetTableauPile(j);
+
+                                    if (hand.Contains(card)) {
+                                        tableFaceUpCards[j] += one;
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
 
                         for (int i = 0; i < tableLayoutPanels.Length; i++) {
                             Hand hand = Solitare_Game.GetTableauPile(i);
 
-                            if (hand.Contains(prevoiusClickedCard)) {
+                            if (hand.Contains(previousClickedCard)) {
                                 tableFaceUpCards[i] += one;
                                 break;
                             }
@@ -161,9 +208,8 @@ namespace Games {
                         }
                     }
                 }
+                previousClickedCard = clickedCard;
             }
-            card = null;
-            prevoiusClickedCard = clickedCard;
         }
 
         private void drawPileImage_Click(object sender, EventArgs e) {

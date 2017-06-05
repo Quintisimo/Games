@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 using Low_Level_Objects_Library;
 
 namespace Game_Logic_Library {
+
+    /// <summary>
+    /// This class holds the game logic for the Pig Double Die Game
+    /// 
+    /// Author Quintus Cardozo
+    /// Student Number: n9703578
+    /// </summary>
     public static class Pig_Double_Dice_Game {
         private static Die[] dice;
         private static int[] faceValue;
@@ -18,6 +25,9 @@ namespace Game_Logic_Library {
         private static int player1 = 0;
         private static int player2 = 1;
 
+        /// <summary>
+        /// Initializes the class variables at the start of a game
+        /// </summary>
         public static void SetUpGame() {
             dice = new Die[NUM_OF_PLAYERS];
             dice[firstDice] = new Die();
@@ -28,6 +38,11 @@ namespace Game_Logic_Library {
             currentPlayer = GetFirstPlayerName();
         }
 
+        /// <summary>
+        /// Rolls the dice once for the current player, updating the player’s score 
+        /// appropriately according to the facevalues of the dice just rolled
+        /// </summary>
+        /// <returns>true if the player has rolled a single one, otherwise false</returns>
         public static bool PlayGame() {
             dice[firstDice].RollDie();
             dice[secondDice].RollDie();
@@ -56,6 +71,10 @@ namespace Game_Logic_Library {
             return false;
         }
 
+        /// <summary>
+        /// Checks if current player has won the game
+        /// </summary>
+        /// <returns>ture if player has won otherwise false</returns>
         public static bool HasWon() {
             int winingScore = 100;
             int playersCurrentScore;
@@ -74,11 +93,19 @@ namespace Game_Logic_Library {
             return false;
         }
 
+        /// <summary>
+        /// Gets the name of the player going first
+        /// </summary>
+        /// <returns>name of player going first</returns>
         public static string GetFirstPlayerName() {
             currentPlayer = playersName[player1];
             return currentPlayer;
         }
 
+        /// <summary>
+        /// Get the name of the next player
+        /// </summary>
+        /// <returns>name of the next player</returns>
         public static string GetNextPlayerName() {
             if (currentPlayer == playersName[player1]) {
                 currentPlayer = playersName[player2];
@@ -89,15 +116,27 @@ namespace Game_Logic_Library {
             }
         }
 
+        /// <summary>
+        /// Get the specified player’s current points total
+        /// </summary>
+        /// <param name="nameOfPlayer">specified player name</param>
+        /// <returns> specified players total points if name matches otherwise zero</returns>
         public static int GetPointsTotal(string nameOfPlayer) {
+            int points = 0;
+
             if (nameOfPlayer == playersName[player1]) {
-                return pointsTotal[player1];
+                points = pointsTotal[player1];
             } else if (nameOfPlayer == playersName[player2]) {
-                return pointsTotal[player2];
+                points = pointsTotal[player2];
             }
-            return 0;
+            return points;
         }
 
+        /// <summary>
+        /// Gets the facevalue of the specified dice
+        /// </summary>
+        /// <param name="whichDie">specified dice</param>
+        /// <returns>facevalue of specified dice</returns>
         public static int GetFaceValue(int whichDie) {
             return dice[whichDie].GetFaceValue();
         }

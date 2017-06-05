@@ -46,6 +46,9 @@ namespace Games {
             ResetForm();
         }
 
+        /// <summary>
+        /// Resets the form so user can play another game
+        /// </summary>
         private void ResetForm() {
             testButton.Visible = false;
             hitButton.Enabled = false;
@@ -61,6 +64,11 @@ namespace Games {
             pointsLabels[player].Visible = false;
         }
 
+        /// <summary>
+        /// Displayes the cards in the specified hand in the specified table in the form
+        /// </summary>
+        /// <param name="hand">specified hand</param>
+        /// <param name="tableLayoutPanel">specified table</param>
         private void DisplayGuiHand(Hand hand, TableLayoutPanel tableLayoutPanel) {
             tableLayoutPanel.Controls.Clear(); // Remove any cards already being shown.
             foreach (Card card in hand) {
@@ -76,6 +84,11 @@ namespace Games {
             }
         }// End DisplayGuiHand
 
+        /// <summary>
+        /// Checks if the dealer or player has gone bust
+        /// </summary>
+        /// <param name="close">if not "no" dont add a point</param>
+        /// <returns>true if player or dealer is bust otherwise false</returns>
         private bool ScoreMessage(string close = "no") {
             dealerPoints = TwentyOneGame.GetTotalPoints(dealer);
             playerPoints = TwentyOneGame.GetTotalPoints(player);
@@ -108,6 +121,10 @@ namespace Games {
             return false;
         }
 
+        /// <summary>
+        /// Checks who won the game if player or dealer didn't go bust
+        /// </summary>
+        /// <param name="close">if not "no" dont add a point</param>
         private void DetermineWinner(string close = "no") {
             bool score = ScoreMessage(close);
 
@@ -136,6 +153,10 @@ namespace Games {
             }
         }
 
+        /// <summary>
+        /// If player draws aces askes whether to count it as one or eleven
+        /// </summary>
+        /// <param name="hand">player's hand</param>
         private void PlayerAceValue(Hand hand) {
             FaceValue cardValue;
             foreach (Card card in hand) {

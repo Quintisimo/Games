@@ -27,6 +27,9 @@ namespace Games {
             ResetForm();
         }
 
+        /// <summary>
+        /// Resets the form so user can play another game
+        /// </summary>
         private void ResetForm() {
             anotherGameGroup.Enabled = false;
             holdButton.Enabled = false;
@@ -39,6 +42,9 @@ namespace Games {
             playerTwoText.Clear();
         }
 
+        /// <summary>
+        /// Displayes the die images in the form
+        /// </summary>
         private void DiceImage() {
             diceImages[firstDice].Image = Images.GetDieImage(Pig_Double_Dice_Game.GetFaceValue(firstDice));
             diceImages[secondDice].Image = Images.GetDieImage(Pig_Double_Dice_Game.GetFaceValue(secondDice));

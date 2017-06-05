@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 using Low_Level_Objects_Library;
 
 namespace Game_Logic_Library {
+
+    /// <summary>
+    /// This class holds the game logic for the Solitare Game
+    /// 
+    /// Author Quintus Cardozo
+    /// Student Number: n9703578
+    /// </summary>
     public static class Solitare_Game {
         private static CardPile drawPile;
         private static CardPile discardPile;
@@ -16,8 +23,12 @@ namespace Game_Logic_Library {
         private const int addOne = 1;
         private const int noCards = 0;
 
+        /// <summary>
+        /// Initializes the class variables at the start of a game
+        /// </summary>
         public static void SetUpGame() {
             drawPile = new CardPile(true);
+            drawPile.Shuffle();
             discardPile = new CardPile();
             tableauPiles = new Hand[NUM_OF_HANDS];
 
@@ -31,20 +42,37 @@ namespace Game_Logic_Library {
             }
         }
 
+        /// <summary>
+        /// Get the specified hand from the array of hands
+        /// </summary>
+        /// <param name="which">specified hand position</param>
+        /// <returns>specified hand</returns>
         public static Hand GetTableauPile(int which) {
             return tableauPiles[which];
         }
 
+        /// <summary>
+        /// Get the number of cards in the drawpile
+        /// </summary>
+        /// <returns>number of cards in the draw pile</returns>
         public static int NumOfDrawCards() {
             return drawPile.GetCount();
         }
 
+        /// <summary>
+        /// Deals one card from the drawpile and adds it to the discardpile
+        /// </summary>
+        /// <returns>card</returns>
         public static Card DrawOneCard() {
             Card card = drawPile.DealOneCard();
             discardPile.Add(card);
             return card;
         }
 
+        /// <summary>
+        /// Gets the last card in the discardpile and removes it from the pile
+        /// </summary>
+        /// <returns>card</returns>
         public static Card DiscardPileCard() {
             Card card = null;
 
@@ -55,6 +83,10 @@ namespace Game_Logic_Library {
             return card;
         }
 
+        /// <summary>
+        /// Deals all cards from the discardpile tto the drawpile
+        /// </summary>
+        /// <returns></returns>
         public static CardPile RefillDrawPile() {
             int numOfCards = discardPile.GetCount();
 
@@ -65,6 +97,10 @@ namespace Game_Logic_Library {
             return drawPile;
         }
 
+        /// <summary>
+        /// Addes specified card to an empty suitpile
+        /// </summary>
+        /// <param name="card">specified card</param>
         public static void AddToSuitPile(Card card) {
             for (int i = 0; i < suitPiles.Length; i++) {
 
@@ -75,6 +111,11 @@ namespace Game_Logic_Library {
             }
         }
 
+        /// <summary>
+        /// Moves card from discardpile to specified tableaupile
+        /// </summary>
+        /// <param name="tableauCard">tableaupile moved to</param>
+        /// <param name="discardPileCard">card to be moved</param>
         public static void AddToTableauPile(Card tableauCard, Card discardPileCard) {
             for (int i = 0; i < tableauPiles.Length; i++) {
                 if (tableauPiles[i].Contains(tableauCard)) {
@@ -83,6 +124,11 @@ namespace Game_Logic_Library {
             }
         }
 
+        /// <summary>
+        /// Moves cards between tableau pile
+        /// </summary>
+        /// <param name="addCard">card to be moved</param>
+        /// <param name="otherCard">where to be moved</param>
         public static void MoveTableauCard(Card addCard, Card otherCard) {
             for (int i = 0; i < tableauPiles.Length; i++) {
                 if (tableauPiles[i].Contains(addCard)) {
