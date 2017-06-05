@@ -160,7 +160,7 @@ namespace Games {
                         for (int i = 0; i < tableFaceUpCards.Length; i++) {
                             Hand hand = Solitare_Game.GetTableauPile(i);
 
-                            if (tableFaceUpCards[i] > 0) {
+                            if (tableFaceUpCards[i] > 0 && faceCardsList[i].Count() > zero) {
 
                                 foreach (var card in faceCardsList[i]) {
                                     Solitare_Game.MoveTableauCard(card, clickedCard);
