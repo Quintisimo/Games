@@ -10,6 +10,13 @@ using System.Windows.Forms;
 
 namespace Games {
     public partial class diceGamesForm : Form {
+
+        /// <summary>
+        /// Form that is used to pick dice game
+        /// 
+        /// Author Quintus Cardozo
+        /// Student Number: n9703578
+        /// </summary>
         public diceGamesForm() {
             InitializeComponent();
         }

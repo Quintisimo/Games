@@ -10,6 +10,13 @@ using System.Windows.Forms;
 using Game_Logic_Library;
 
 namespace Games {
+
+    /// <summary>
+    /// Form that is used to play Double Dice Pig Game
+    /// 
+    /// Author Quintus Cardozo
+    /// Student Number: n9703578
+    /// </summary>
     public partial class pigWithTwoDiceForm : Form {
         private PictureBox[] diceImages;
         private string currentPlayer;

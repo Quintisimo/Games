@@ -11,6 +11,12 @@ using System.Windows.Forms;
 namespace Games {
     public partial class cardGamesForm : Form {
 
+        /// <summary>
+        /// Form that is used to pick card game
+        /// 
+        /// Author Quintus Cardozo
+        /// Student Number: n9703578
+        /// </summary>
         private twentyOneGameForm TwentyOneForm;
 
 

@@ -10,7 +10,14 @@ using System.Windows.Forms;
 using Low_Level_Objects_Library;
 using Game_Logic_Library;
 
-namespace Games { 
+namespace Games {
+
+    /// <summary>
+    /// Form that is used to play TwentyOne Game
+    /// 
+    /// Author Quintus Cardozo
+    /// Student Number: n9703578
+    /// </summary>
     public partial class twentyOneGameForm : Form {
         const int WINNING_POINTS = 21;
 

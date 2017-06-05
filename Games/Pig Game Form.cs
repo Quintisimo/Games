@@ -10,6 +10,13 @@ using System.Windows.Forms;
 using Game_Logic_Library;
 
 namespace Games {
+
+    /// <summary>
+    /// Form that is used to play Single Die Pig Game
+    /// 
+    /// Author Quintus Cardozo
+    /// Student Number: n9703578
+    /// </summary>
     public partial class pigGameForm : Form {
         private string currentPlayer;
 

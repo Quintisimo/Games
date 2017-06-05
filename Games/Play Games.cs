@@ -10,6 +10,13 @@ using System.Windows.Forms;
 
 namespace Games {
     public partial class gamesForm : Form {
+
+        /// <summary>
+        /// Form that is loaded when the program is first run
+        /// 
+        /// Author Quintus Cardozo
+        /// Student Number: n9703578
+        /// </summary>
         public gamesForm() {
             InitializeComponent();
             startButton.Enabled = false;
