@@ -28,7 +28,7 @@ namespace Game_Logic_Library {
         /// </summary>
         public static void SetUpGame() {
             drawPile = new CardPile(true);
-            drawPile.Shuffle();
+            //drawPile.Shuffle();
             discardPile = new CardPile();
             tableauPiles = new Hand[NUM_OF_HANDS];
 
@@ -124,12 +124,9 @@ namespace Game_Logic_Library {
             }
         }
 
-        /// <summary>
-        /// Moves cards between tableau pile
-        /// </summary>
-        /// <param name="addCard">card to be moved</param>
-        /// <param name="otherCard">where to be moved</param>
-        public static void MoveTableauCard(Card addCard, Card otherCard) {
+        public static int MoveTableauCard(Card addCard, Card otherCard) {
+            int position = 0;
+
             for (int i = 0; i < tableauPiles.Length; i++) {
                 if (tableauPiles[i].Contains(addCard)) {
                     tableauPiles[i].Remove(addCard);
@@ -137,8 +134,10 @@ namespace Game_Logic_Library {
 
                 if (tableauPiles[i].Contains(otherCard)) {
                     tableauPiles[i].Add(addCard);
+                    position = i;
                 }
             }
+            return position;
         }
     }
 }

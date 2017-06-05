@@ -153,18 +153,9 @@ namespace Games {
 
                     if (clickedValue == prevoiusClickedCardValue + one &&
                         prevoiusClickedCardColour != clickedCardColour) {
-                        Solitare_Game.MoveTableauCard(previousClickedCard, clickedCard);
-
-                        for (int i = 0; i < faceCardsList.Length; i++) {
-                            Hand hand = Solitare_Game.GetTableauPile(i);
-
-                            foreach(var card in faceCardsList[i]) {
-                                if (hand.Contains(clickedCard)) {
-                                    faceCardsList[i].Add(clickedCard);
-                                    faceCardsList[i].Add(previousClickedCard);
-                                }
-                            }
-                        }
+                        int position = Solitare_Game.MoveTableauCard(previousClickedCard, clickedCard);
+                        faceCardsList[position].Add(clickedCard);
+                        faceCardsList[position].Add(previousClickedCard);
 
                         for (int i = 0; i < tableFaceUpCards.Length; i++) {
                             Hand hand = Solitare_Game.GetTableauPile(i);
@@ -188,15 +179,6 @@ namespace Games {
                                         break;
                                     }
                                 }
-                                break;
-                            }
-                        }
-
-                        for (int i = 0; i < tableLayoutPanels.Length; i++) {
-                            Hand hand = Solitare_Game.GetTableauPile(i);
-
-                            if (hand.Contains(previousClickedCard)) {
-                                tableFaceUpCards[i] += one;
                                 break;
                             }
                         }
