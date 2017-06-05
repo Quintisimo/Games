@@ -124,6 +124,12 @@ namespace Game_Logic_Library {
             }
         }
 
+        /// <summary>
+        /// Moves card from one tableaupile to another
+        /// </summary>
+        /// <param name="addCard">card to be moved</param>
+        /// <param name="otherCard">which tableaupile card has to be moved to</param>
+        /// <returns>which tableaupile card was moved to</returns>
         public static int MoveTableauCard(Card addCard, Card otherCard) {
             int position = 0;
 

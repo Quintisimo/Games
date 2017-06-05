@@ -20,7 +20,7 @@ namespace Games {
         int discardPileCardValue;
         Suit discardPileCardSuit;
         Colour discardPileCardColour;
-        List<Card>[] faceCardsList;
+        List<Card>[] faceCardsListArray;
 
         public solitaireForm() {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace Games {
                 tableLayoutPanel7 };
             suitPiles = new PictureBox[] { suitPileImage1, suitPileImage2, suitPileImage3, suitPileImage4 };
             tableFaceUpCards = new int[] { 0, 0, 0, 0, 0, 0, 0 };
-            faceCardsList = new List<Card>[] { new List<Card>(), new List<Card>(), new List<Card>(),
+            faceCardsListArray = new List<Card>[] { new List<Card>(), new List<Card>(), new List<Card>(),
                 new List<Card>(), new List<Card>(), new List<Card>(), new List<Card>() };
             Solitare_Game.SetUpGame();
 
@@ -154,23 +154,23 @@ namespace Games {
                     if (clickedValue == prevoiusClickedCardValue + one &&
                         prevoiusClickedCardColour != clickedCardColour) {
                         int position = Solitare_Game.MoveTableauCard(previousClickedCard, clickedCard);
-                        faceCardsList[position].Add(clickedCard);
-                        faceCardsList[position].Add(previousClickedCard);
+                        faceCardsListArray[position].Add(clickedCard);
+                        faceCardsListArray[position].Add(previousClickedCard);
 
                         for (int i = 0; i < tableFaceUpCards.Length; i++) {
                             Hand hand = Solitare_Game.GetTableauPile(i);
 
-                            if (tableFaceUpCards[i] > 0 && faceCardsList[i].Count() > zero) {
+                            if (tableFaceUpCards[i] > 0 && faceCardsListArray[i].Count() > zero) {
 
-                                foreach (var card in faceCardsList[i]) {
+                                foreach (var card in faceCardsListArray[i]) {
                                     Solitare_Game.MoveTableauCard(card, clickedCard);
                                 }
                                 tableFaceUpCards[i] = zero;
                             }
                         }
 
-                        for (int i = 0; i < faceCardsList.Length; i++) {
-                            foreach (var card in faceCardsList[i]) {
+                        for (int i = 0; i < faceCardsListArray.Length; i++) {
+                            foreach (var card in faceCardsListArray[i]) {
                                 for (int j = 0; j < tableLayoutPanels.Length; j++) {
                                     Hand hand = Solitare_Game.GetTableauPile(j);
 
@@ -210,23 +210,31 @@ namespace Games {
         }
 
         private void discardPileImage_Click(object sender, EventArgs e) {
-            card = Solitare_Game.DiscardPileCard();
-            FaceValue cardValue = card.GetFaceValue();
-            discardPileCardValue = (int)card.GetFaceValue();
-            discardPileCardSuit = card.GetSuit();
 
-            if (cardValue == FaceValue.Ace) {
-                Solitare_Game.AddToSuitPile(card);
-
-                foreach (PictureBox picture in suitPiles) {
-
-                    if (picture.Image == null) {
-                        picture.Image = Images.GetCardImage(card);
-                        break;
-                    }
-                }
+            if (card != null && card == previousClickedCard) {
+                MessageBox.Show("Cannot place card onto discard pile", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                previousClickedCard = null;
+            } else {
                 card = Solitare_Game.DiscardPileCard();
-                discardPileImage.Image = Images.GetCardImage(card);
+                FaceValue cardValue = card.GetFaceValue();
+                discardPileCardValue = (int)card.GetFaceValue();
+                discardPileCardSuit = card.GetSuit();
+
+                if (cardValue == FaceValue.Ace) {
+                    Solitare_Game.AddToSuitPile(card);
+
+                    foreach (PictureBox picture in suitPiles) {
+
+                        if (picture.Image == null) {
+                            picture.Image = Images.GetCardImage(card);
+                            break;
+                        }
+                    }
+                    card = Solitare_Game.DiscardPileCard();
+                    discardPileImage.Image = Images.GetCardImage(card);
+                }
+                previousClickedCard = card;
             }
         }
     }
